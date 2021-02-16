@@ -1,7 +1,7 @@
 package ensta;
 
 
-public enum Orientation{
+enum Orientation{
 	NORTH, SOUTH, EAST, WEST
 }
 
@@ -79,7 +79,7 @@ public abstract class AbstractShip{
 	 *getter pos
 	 */
 	public Orientation getPos(){
-		return orientation;
+		return pos;
 	}
 
 	/**

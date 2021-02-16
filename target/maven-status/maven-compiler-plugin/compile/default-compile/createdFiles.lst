@@ -1,1 +1,9 @@
+ensta/Destroyer.class
+ensta/AbstractShip.class
+ensta/Board.class
+ensta/Submarine.class
+ensta/Orientation.class
+ensta/Carrier.class
+ensta/TestBoard.class
 ensta/App.class
+ensta/Battleship.class
