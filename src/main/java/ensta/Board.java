@@ -1,3 +1,5 @@
+package ensta;
+
 class Board{
 	/** Nom du Board */
 	private String nom;
@@ -30,14 +32,14 @@ class Board{
 	/**
 	 *getters
 	 */
-	public String get_nom(){
+	public String getNom(){
 		return nom;
 	}
 
 	/**
 	 *setters
 	 */
-	public void set_nom(String name){
+	public void setNom(String name){
 		nom = name;
 	}
 
