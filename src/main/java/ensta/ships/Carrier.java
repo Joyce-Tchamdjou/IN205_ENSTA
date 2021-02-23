@@ -1,26 +1,26 @@
-package ensta;
+package ensta.ships;
 
 public class Carrier extends AbstractShip{
 	/**Label du Carrier*/
-	static String l = "Car";
+	static char l = 'C';
 	/**Nom complet du Carrier*/
 	static String n = "Carrier";
+	/**Taille du Carrier*/
+	static int t = 5;
 
 	/**
 	 *Constructeur valué
-	 *@param taille taille du navire
 	 *@param pos orientation du navire
 	 */
-	public Carrier(int taille, Orientation pos){
-		super(l, n, taille, pos);
+	public Carrier(Orientation pos){
+		super(l, n, t, pos);
 	}
 
 	/**
-	 *Constructeur valué
-	 *@param taille taille du navire
+	 *Constructeur par défaut
 	 */
 	public Carrier(int taille){
-		super(l, n, taille, Orientation.EAST);
+		super(l, n, t, Orientation.EAST);
 	}
 }
 

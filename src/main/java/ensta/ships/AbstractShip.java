@@ -1,14 +1,9 @@
-package ensta;
-
-
-enum Orientation{
-	NORTH, SOUTH, EAST, WEST
-}
+package ensta.ships;
 
 
 public abstract class AbstractShip{
 	/**label du type de navire*/
-	private String label;
+	private char label;
 	/**nom du type de navire*/
 	private String name_ship;
 	/**taille du navire*/
@@ -23,7 +18,7 @@ public abstract class AbstractShip{
 	 *@param taille taille du navire
 	 *@param pos orientation du navire
 	 */
-	public AbstractShip(String label, String name_ship, int taille, Orientation pos){
+	public AbstractShip(char label, String name_ship, int taille, Orientation pos){
 		label = label;
 		name_ship = name_ship;
 		taille = taille;
@@ -48,7 +43,7 @@ public abstract class AbstractShip{
 	/**
 	 *getter label
 	 */
-	public String getLabel(){
+	public char getLabel(){
 		return label;
 	}
 
@@ -56,7 +51,7 @@ public abstract class AbstractShip{
 	 *setter label
 	 *@param label
 	 */
-	public void setLabel(String label){
+	public void setLabel(char label){
 		label = label;
 	}
 

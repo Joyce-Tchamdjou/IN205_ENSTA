@@ -1,27 +1,27 @@
-package ensta;
+package ensta.ships;
 
 
 public class Submarine extends AbstractShip{
 	/**Label du Submarine*/
-	static String l = "Sub";
+	static char l = 'S';
 	/**Nom complet du Submarine*/
 	static String n = "Submarine";
+	/**Taille du Submarine*/
+	static int t = 3;
 
 	/**
 	 *Constructeur valué
-	 *@param taille taille du navire
 	 *@param pos orientation du navire
 	 */
-	public Submarine(int taille, Orientation pos){
-		super(l, n, taille, pos);
+	public Submarine(Orientation pos){
+		super(l, n, t, pos);
 	}
 
 	/**
-	 *Constructeur valué
-	 *@param taille taille du navire
+	 *Constructeur par défaut
 	 */
-	public Submarine(int taille){
-		super(l, n, taille, Orientation.EAST);
+	public Submarine(){
+		super(l, n, t, Orientation.EAST);
 	}
 }
 

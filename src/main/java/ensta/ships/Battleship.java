@@ -1,26 +1,26 @@
-package ensta;
+package ensta.ships;
 
 public class Battleship extends AbstractShip{
 	/**Label du Battleship*/
-	static String l = "Bat";
+	static char l = 'B';
 	/**Nom complet du Battleship*/
 	static String n = "Battleship";
+	/**Taille du Battleship*/
+	static int t = 4;
 
 	/**
 	 *Constructeur valué
-	 *@param taille taille du navire
 	 *@param pos orientation du navire
 	 */
-	public Battleship(int taille, Orientation pos){
-		super(l, n, taille, pos);
+	public Battleship(Orientation pos){
+		super(l, n, t, pos);
 	}
 	
 	/**
-	 *Constructeur valué
-	 *@param taille taille du navire
+	 *Constructeur par defaut
 	 */
-	public Battleship(int taille){
-		super(l, n, taille, Orientation.EAST);
+	public Battleship(){
+		super(l, n, t, Orientation.EAST);
 	}
 }
 

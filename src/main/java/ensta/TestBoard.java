@@ -9,6 +9,7 @@ public class TestBoard{
 				test.frappes[i][j] = false;
 			}
 		}
+		test.navires[0][1] = 'x';
 		test.print();
 	}
 

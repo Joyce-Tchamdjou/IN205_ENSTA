@@ -1,6 +1,7 @@
 package ensta;
+import ensta.ships.*;
 
-class Board{
+class Board implements IBoard{
 	/** Nom du Board */
 	private String nom;
 	/** Tableau 2D des navires*/
@@ -88,18 +89,111 @@ class Board{
 			System.out.print("\n");
 		}
 	}
+
+	/**
+     * Get the size of the grids contained in the Board
+     * @return the size of the grids contained in the Board
+     */
+    public int getSize(){
+    	return navires.length;
+    }
+
+    /**
+     * Get if a ship is placed at the given position
+     * @param x
+     * @param y
+     * @return true if a ship is located at the given position
+     */
+    public boolean hasShip(int x, int y){
+    	if (navires[x][y] == '.'){
+    		return false;
+    	}else{
+    		return true;
+    	}
+    }
+
+    /**
+    * Put the given ship at the given position
+    * @param ship The ship to place on the board
+    * @param x
+    * @param y
+    */
+    public void putShip(AbstractShip ship, int x, int y) throws Exception{
+    	int size_s = ship.getTaille();
+    	char label_s = ship.getLabel();
+    	Orientation pos_s = ship.getPos();
+    	int size_grid = getSize();
+
+    	if(x <= 0 || x > size_grid){
+    		throw new Exception("Valeur hors champ");
+    	}
+    	if(y <= 0 || y > size_grid){
+    		throw new Exception("Valeur hors champ");
+    	}
+
+    	if(hasShip(x, y)){
+    		throw new Exception("Bateau présent à cette position !");
+    	}
+
+    	switch(pos_s) {
+    		case NORTH:
+    			if(y-size_s < 0){
+    				throw new Exception("Sortie de grille");
+    			}else{
+    				for(int i = y; i > y-size_s; i--){
+    					if(!hasShip(x, i)){
+    						navires[x][i] = label_s;
+    					}else{
+    						throw new Exception("Bateau présent à cette position !");
+    					}
+    					
+    				}
+    			}
+    			break;
+    		case SOUTH:
+    			if(y+size_s >= size_grid){
+    				throw new Exception("Sortie de grille");
+    			}else{
+    				for(int i = y; i < y+size_s; i++){
+    					if(!hasShip(x, i)){
+    						navires[x][i] = label_s;
+    					}else{
+    						throw new Exception("Bateau présent à cette position !");
+    					}
+    				}
+    			}
+    			break;
+    		case EAST:
+    			if(x+size_s >= size_grid){
+    				throw new Exception("Sortie de grille");
+    			}else{
+    				for(int i = x; i < x+size_s; i++){
+    					if(!hasShip(i, y)){
+    						navires[i][y] = label_s;
+    					}else{
+    						throw new Exception("Bateau présent à cette position !");
+    					}
+    				}
+    			}
+    			break;
+    		case WEST:
+    			if(x-size_s < 0){
+    				throw new Exception("Sortie de grille");
+    			}else{
+    				for(int i = x; i > x-size_s; i--){
+    					if(!hasShip(i, y)){
+    						navires[i][y] = label_s;
+    					}else{
+    						throw new Exception("Bateau présent à cette position !");
+    					}
+    				}
+    			}
+    			break;
+    	}
+
+    }
+
+
+
 }
 
-/*public class TestBoard{
-	public static void main(String[] args){
-		Board test = new Board("Joyce");
-		for(int i = 0; i < 10; i++){
-			for(int j = 0; j < 10; j++){
-				test.navires[i][j] = '.';
-				test.frappes[i][j] = false;
-			}
-		}
-		test.print();
-	}
-
-}*/

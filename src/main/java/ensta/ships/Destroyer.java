@@ -1,27 +1,27 @@
-package ensta;
+package ensta.ships;
 
 
 public class Destroyer extends AbstractShip{
 	/**Label du Destroyer*/
-	static String l = "Des";
+	static char l = 'D';
 	/**Nom complet du Destroyer*/
 	static String n = "Destroyer";
+	/**Taille du Destroyer*/
+	static int t = 2;
 
 	/**
 	 *Constructeur valué
-	 *@param taille taille du navire
 	 *@param pos orientation du navire
 	 */
-	public Destroyer(int taille, Orientation pos){
-		super(l, n, taille, pos);
+	public Destroyer(Orientation pos){
+		super(l, n, t, pos);
 	}
 
 	/**
-	 *Constructeur valué
-	 *@param taille taille du navire
+	 *Constructeur par défaut
 	 */
-	public Destroyer(int taille){
-		super(l, n, taille, Orientation.EAST);
+	public Destroyer(){
+		super(l, n, t, Orientation.EAST);
 	}
 }
 
