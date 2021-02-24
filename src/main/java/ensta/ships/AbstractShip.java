@@ -5,39 +5,39 @@ public abstract class AbstractShip{
 	/**label du type de navire*/
 	private char label;
 	/**nom du type de navire*/
-	private String name_ship;
+	private String name;
 	/**taille du navire*/
-	private int taille;
+	private int length;
 	/**orientation du navire*/
 	private Orientation pos;
 	
 	/**
 	 *Constructeur valué
 	 *@param label label du type de navire
-	 *@param name_ship nom du type de navire
+	 *@param name nom du type de navire
 	 *@param taille taille du navire
 	 *@param pos orientation du navire
 	 */
-	public AbstractShip(char label, String name_ship, int taille, Orientation pos){
-		label = label;
-		name_ship = name_ship;
-		taille = taille;
-		pos = pos;
+	public AbstractShip(char label, String name, int length, Orientation pos){
+		this.label = label;
+		this.name = name;
+		this.length = length;
+		this.pos = pos;
 	}
 
 	/**
-	 *getter name_ship
+	 *getter name
 	 */
-	public String getName_ship(){
-		return name_ship;
+	public String getName(){
+		return name;
 	}
 
 	/**
-	 *setter name_ship
+	 *setter name
 	 *@param name_ship
 	 */
-	public void setName_ship(String name_ship){
-		name_ship = name_ship;
+	public void setName(String name){
+		this.name = name;
 	}
 
 	/**
@@ -52,22 +52,22 @@ public abstract class AbstractShip{
 	 *@param label
 	 */
 	public void setLabel(char label){
-		label = label;
+		this.label = label;
 	}
 
 	/**
-	 *getter taille
+	 *getter length
 	 */
-	public int getTaille(){
-		return taille;
+	public int getLength(){
+		return length;
 	}
 
 	/**
-	 *setter taille
-	 *@param taille
+	 *setter length
+	 *@param length
 	 */
-	public void setTaille(String taille){
-		taille = taille;
+	public void setLength(int length){
+		this.length = length;
 	}
 
 	/**
@@ -82,6 +82,6 @@ public abstract class AbstractShip{
 	 *@param pos
 	 */
 	public void setPos(Orientation pos){
-		pos = pos;
+		this.pos = pos;
 	}
 }

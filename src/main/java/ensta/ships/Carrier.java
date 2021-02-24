@@ -19,7 +19,7 @@ public class Carrier extends AbstractShip{
 	/**
 	 *Constructeur par défaut
 	 */
-	public Carrier(int taille){
+	public Carrier(){
 		super(l, n, t, Orientation.EAST);
 	}
 }

@@ -1,5 +1,6 @@
 package ensta;
 import ensta.ships.*;
+import java.lang.Throwable;
 
 public interface IBoard { 
 

@@ -1,4 +1,6 @@
 package ensta;
+import ensta.ships.*;
+import java.lang.Throwable;
 
 public class TestBoard{
 	public static void main(String[] args){
@@ -9,7 +11,15 @@ public class TestBoard{
 				test.frappes[i][j] = false;
 			}
 		}
-		test.navires[0][1] = 'x';
+
+		Carrier bat = new Carrier();
+		System.out.println(bat.getLength() + ", " + bat.getLabel() + ", " + bat.getPos());
+		try{
+			test.putShip(bat, 1, 1);
+		}catch(Exception e){
+			System.out.println(e);
+		}
+		
 		test.print();
 	}
 

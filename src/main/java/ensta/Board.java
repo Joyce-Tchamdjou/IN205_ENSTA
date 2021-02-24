@@ -1,5 +1,6 @@
 package ensta;
 import ensta.ships.*;
+import java.lang.Throwable;
 
 class Board implements IBoard{
 	/** Nom du Board */
@@ -14,8 +15,8 @@ class Board implements IBoard{
 	 *@param name nom du board
 	 *@param size taille du board
 	 */
-	public Board(String name, int size){
-		nom = name;
+	public Board(String nom, int size){
+		this.nom = nom;
 		navires = new char[size][size];
 		frappes = new boolean[size][size];
 	}
@@ -24,8 +25,8 @@ class Board implements IBoard{
 	 *Constructeur valué 2
 	 *@param name nom du board
 	 */
-	public Board(String name){
-		nom = name;
+	public Board(String nom){
+		this.nom = nom;
 		navires = new char[10][10];
 		frappes = new boolean[10][10];
 	}
@@ -40,8 +41,8 @@ class Board implements IBoard{
 	/**
 	 *setters
 	 */
-	public void setNom(String name){
-		nom = name;
+	public void setNom(String nom){
+		this.nom = nom;
 	}
 
 	/**
@@ -119,7 +120,7 @@ class Board implements IBoard{
     * @param y
     */
     public void putShip(AbstractShip ship, int x, int y) throws Exception{
-    	int size_s = ship.getTaille();
+    	int size_s = ship.getLength();
     	char label_s = ship.getLabel();
     	Orientation pos_s = ship.getPos();
     	int size_grid = getSize();
@@ -131,18 +132,18 @@ class Board implements IBoard{
     		throw new Exception("Valeur hors champ");
     	}
 
-    	if(hasShip(x, y)){
+    	/*if(hasShip(x, y)){
     		throw new Exception("Bateau présent à cette position !");
-    	}
+    	}*/
 
     	switch(pos_s) {
-    		case NORTH:
+    		case WEST:
     			if(y-size_s < 0){
     				throw new Exception("Sortie de grille");
     			}else{
-    				for(int i = y; i > y-size_s; i--){
-    					if(!hasShip(x, i)){
-    						navires[x][i] = label_s;
+    				for(int i = y-1; i > y-size_s-1; i--){
+    					if(!hasShip(x-1, i)){
+    						navires[x-1][i] = label_s;
     					}else{
     						throw new Exception("Bateau présent à cette position !");
     					}
@@ -150,39 +151,39 @@ class Board implements IBoard{
     				}
     			}
     			break;
-    		case SOUTH:
-    			if(y+size_s >= size_grid){
-    				throw new Exception("Sortie de grille");
-    			}else{
-    				for(int i = y; i < y+size_s; i++){
-    					if(!hasShip(x, i)){
-    						navires[x][i] = label_s;
-    					}else{
-    						throw new Exception("Bateau présent à cette position !");
-    					}
-    				}
-    			}
-    			break;
     		case EAST:
-    			if(x+size_s >= size_grid){
+    			if(y+size_s > size_grid){
     				throw new Exception("Sortie de grille");
     			}else{
-    				for(int i = x; i < x+size_s; i++){
-    					if(!hasShip(i, y)){
-    						navires[i][y] = label_s;
+    				for(int i = y-1; i < y+size_s-1; i++){
+    					if(!hasShip(x-1, i)){
+    						navires[x-1][i] = label_s;
     					}else{
     						throw new Exception("Bateau présent à cette position !");
     					}
     				}
     			}
     			break;
-    		case WEST:
+    		case SOUTH:
+    			if(x+size_s > size_grid){
+    				throw new Exception("Sortie de grille");
+    			}else{
+    				for(int i = x-1; i < x+size_s-1; i++){
+    					if(!hasShip(i, y-1)){
+    						navires[i][y-1] = label_s;
+    					}else{
+    						throw new Exception("Bateau présent à cette position !");
+    					}
+    				}
+    			}
+    			break;
+    		case NORTH:
     			if(x-size_s < 0){
     				throw new Exception("Sortie de grille");
     			}else{
-    				for(int i = x; i > x-size_s; i--){
-    					if(!hasShip(i, y)){
-    						navires[i][y] = label_s;
+    				for(int i = x-1; i > x-size_s-1; i--){
+    					if(!hasShip(i, y-1)){
+    						navires[i][y-1] = label_s;
     					}else{
     						throw new Exception("Bateau présent à cette position !");
     					}
