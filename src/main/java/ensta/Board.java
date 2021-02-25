@@ -1,14 +1,18 @@
 package ensta;
 import ensta.ships.*;
 import java.lang.Throwable;
+import java.lang.Boolean;
 
 class Board implements IBoard{
 	/** Nom du Board */
 	private String nom;
 	/** Tableau 2D des navires*/
-	public char[][] navires;
+	public ShipState[][] navires;
 	/** Tableau 2D des frappes*/
-	public boolean[][] frappes;
+	public Boolean[][] frappes;
+
+	public Boolean t = new Boolean(true);
+	public Boolean f = new Boolean(false);
 
 	/**
 	 *Constructeur valué 1
@@ -17,8 +21,8 @@ class Board implements IBoard{
 	 */
 	public Board(String nom, int size){
 		this.nom = nom;
-		navires = new char[size][size];
-		frappes = new boolean[size][size];
+		navires = new ShipState[size][size];
+		frappes = new Boolean[size][size];
 	}
 
 	/**
@@ -27,8 +31,8 @@ class Board implements IBoard{
 	 */
 	public Board(String nom){
 		this.nom = nom;
-		navires = new char[10][10];
-		frappes = new boolean[10][10];
+		navires = new ShipState[10][10];
+		frappes = new Boolean[10][10];
 	}
 
 	/**
@@ -64,7 +68,11 @@ class Board implements IBoard{
 		for(int i = 1; i <= size_navires; i++){
 			System.out.print(i + "\t");
 			for(int j = 0; j < size_navires; j++){
-				System.out.print(navires[i-1][j] + "\t");
+				if(navires[i-1][j] == null){
+					System.out.print("." + "\t");
+				}else{
+					System.out.print(navires[i-1][j].toString() + "\t");
+				}
 			}
 			System.out.print("\n");
 		}
@@ -81,10 +89,12 @@ class Board implements IBoard{
 		for(int i = 1; i <= size_frappes; i++){
 			System.out.print(i + "\t");
 			for(int j = 0; j < size_frappes; j++){
-				if(frappes[i-1][j] == true){
-					System.out.print("x" + "\t");
-				}else{
+				if(frappes[i-1][j] == null){
 					System.out.print("." + "\t");
+				}else if(frappes[i-1][j].compareTo(t) == 0){
+					System.out.print(ColorUtil.colorize("X", ColorUtil.Color.RED) + "\t");
+				}else{
+					System.out.print(ColorUtil.colorize("X", ColorUtil.Color.WHITE) + "\t");
 				}
 			}
 			System.out.print("\n");
@@ -106,7 +116,7 @@ class Board implements IBoard{
      * @return true if a ship is located at the given position
      */
     public boolean hasShip(int x, int y){
-    	if (navires[x][y] == '.'){
+    	if (navires[x][y] == null || navires[x][y].getShip() == null){
     		return false;
     	}else{
     		return true;
@@ -143,7 +153,7 @@ class Board implements IBoard{
     			}else{
     				for(int i = y-1; i > y-size_s-1; i--){
     					if(!hasShip(x-1, i)){
-    						navires[x-1][i] = label_s;
+    						navires[x-1][i] = new ShipState(ship);
     					}else{
     						throw new Exception("Bateau présent à cette position !");
     					}
@@ -157,7 +167,7 @@ class Board implements IBoard{
     			}else{
     				for(int i = y-1; i < y+size_s-1; i++){
     					if(!hasShip(x-1, i)){
-    						navires[x-1][i] = label_s;
+    						navires[x-1][i] = new ShipState(ship);
     					}else{
     						throw new Exception("Bateau présent à cette position !");
     					}
@@ -170,7 +180,7 @@ class Board implements IBoard{
     			}else{
     				for(int i = x-1; i < x+size_s-1; i++){
     					if(!hasShip(i, y-1)){
-    						navires[i][y-1] = label_s;
+    						navires[i][y-1] = new ShipState(ship);
     					}else{
     						throw new Exception("Bateau présent à cette position !");
     					}
@@ -183,7 +193,7 @@ class Board implements IBoard{
     			}else{
     				for(int i = x-1; i > x-size_s-1; i--){
     					if(!hasShip(i, y-1)){
-    						navires[i][y-1] = label_s;
+    						navires[i][y-1] = new ShipState(ship);
     					}else{
     						throw new Exception("Bateau présent à cette position !");
     					}

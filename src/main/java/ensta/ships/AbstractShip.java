@@ -10,6 +10,8 @@ public abstract class AbstractShip{
 	private int length;
 	/**orientation du navire*/
 	private Orientation pos;
+	/**Nouvel attribut strikeCount*/
+	public int strikeCount;
 	
 	/**
 	 *Constructeur valué
@@ -83,5 +85,23 @@ public abstract class AbstractShip{
 	 */
 	public void setPos(Orientation pos){
 		this.pos = pos;
+	}
+
+	/**
+	 *marque le navire comme touché
+	 */
+	public void addStrike(){
+		strikeCount++;
+	}
+
+	/**
+	 *@return vrai si le navire est totalement coulé
+	 */
+	public boolean isSunk(){
+		if(strikeCount >= length){
+			return true;
+		}else{
+			return false;
+		}
 	}
 }

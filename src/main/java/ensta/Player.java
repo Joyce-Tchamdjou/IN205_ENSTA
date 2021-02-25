@@ -41,6 +41,7 @@ public class Player {
             // TODO set ship orientation
             // TODO put ship at given position
 
+
             Orientation or = Orientation.EAST;
             if(res.orientation.compareTo("n") == 0){
                 or = Orientation.NORTH;
@@ -56,7 +57,7 @@ public class Player {
             s.setPos(or);
 
             try{
-                board.putShip(s, res.y, res.x+1);
+                board.putShip(s, res.y+1, res.x+1);
             }catch(Exception e){
                 System.out.println(e);
             }
@@ -70,7 +71,7 @@ public class Player {
         } while (!done);
     }
 
-    public Hit sendHit(int[] coords) {
+    /*public Hit sendHit(int[] coords) {
         boolean done;
         Hit hit = null;
 
@@ -84,7 +85,7 @@ public class Player {
         } while (!done);
 
         return hit;
-    }
+    }*/
 
     public AbstractShip[] getShips() {
         return ships;
