@@ -116,7 +116,7 @@ class Board implements IBoard{
      * @return true if a ship is located at the given position
      */
     public boolean hasShip(int x, int y){
-    	if (navires[x][y] == null || navires[x][y].getShip() == null){
+    	if (navires[x][y] == null || navires[x][y].getShip() == null || navires[x][y].getShip().isSunk()){
     		return false;
     	}else{
     		return true;
@@ -124,11 +124,11 @@ class Board implements IBoard{
     }
 
     /**
-    * Put the given ship at the given position
-    * @param ship The ship to place on the board
-    * @param x
-    * @param y
-    */
+     * Put the given ship at the given position
+     * @param ship The ship to place on the board
+     * @param x
+     * @param y
+     */
     public void putShip(AbstractShip ship, int x, int y) throws Exception{
     	int size_s = ship.getLength();
     	char label_s = ship.getLabel();
@@ -142,9 +142,9 @@ class Board implements IBoard{
     		throw new Exception("Valeur hors champ");
     	}
 
-    	/*if(hasShip(x, y)){
+    	if(hasShip(x-1, y-1)){
     		throw new Exception("Bateau présent à cette position !");
-    	}*/
+    	}
 
     	switch(pos_s) {
     		case WEST:
@@ -204,7 +204,44 @@ class Board implements IBoard{
 
     }
 
+    /**
+     * Set the state of the hit at a given position
+     * @param hit true if the hit must be set to successful
+     * @param x
+     * @param y
+     */
+    public void setHit(boolean hit, int x, int y){
+    	frappes[x-1][y-1] = new Boolean(hit);
+    }
 
+    /**
+	 * Sends a hit at the given position
+	 * @param x
+	 * @param y
+	 * @return status for the hit (eg : strike or miss)
+	 */
+	public Hit sendHit(int x, int y){
+		if(navires[x-1][y-1] == null){
+			return Hit.MISS;
+		}else if(navires[x-1][y-1].getShip().isSunk()){
+			return Hit.fromInt(navires[x-1][y-1].getShip().getLength());
+		}else if(navires[x-1][y-1].getShip().strikeCount == navires[x-1][y-1].getShip().getLength()-1){
+			navires[x-1][y-1].addStrike();
+			return Hit.fromInt(navires[x-1][y-1].getShip().getLength());
+		}else{
+			navires[x-1][y-1].addStrike();
+			return Hit.STRIKE;
+		}
+	}
+
+    /**
+     * Get the state of a hit at the given position
+     * @param x
+     * @param y
+     * @return true if the hit is successful
+     */
+    public Boolean getHit(int x, int y){
+    	return frappes[x-1][y-1];
+    }
 
 }
-
