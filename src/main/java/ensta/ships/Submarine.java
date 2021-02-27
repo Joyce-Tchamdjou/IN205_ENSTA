@@ -5,7 +5,7 @@ public class Submarine extends AbstractShip{
 	/**Label du Submarine*/
 	static char l = 'S';
 	/**Nom complet du Submarine*/
-	static String n = "Submarine";
+	static String n = "Sous-marin";
 	/**Taille du Submarine*/
 	static int t = 3;
 

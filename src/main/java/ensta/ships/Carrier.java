@@ -4,7 +4,7 @@ public class Carrier extends AbstractShip{
 	/**Label du Carrier*/
 	static char l = 'C';
 	/**Nom complet du Carrier*/
-	static String n = "Carrier";
+	static String n = "Porte-avion";
 	/**Taille du Carrier*/
 	static int t = 5;
 

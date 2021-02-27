@@ -4,7 +4,7 @@ public class Battleship extends AbstractShip{
 	/**Label du Battleship*/
 	static char l = 'B';
 	/**Nom complet du Battleship*/
-	static String n = "Battleship";
+	static String n = "Croiseur";
 	/**Taille du Battleship*/
 	static int t = 4;
 

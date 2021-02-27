@@ -5,7 +5,7 @@ public class Destroyer extends AbstractShip{
 	/**Label du Destroyer*/
 	static char l = 'D';
 	/**Nom complet du Destroyer*/
-	static String n = "Destroyer";
+	static String n = "Frégate";
 	/**Taille du Destroyer*/
 	static int t = 2;
 

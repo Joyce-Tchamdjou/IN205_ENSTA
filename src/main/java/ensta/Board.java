@@ -134,6 +134,8 @@ class Board implements IBoard{
     	char label_s = ship.getLabel();
     	Orientation pos_s = ship.getPos();
     	int size_grid = getSize();
+    	boolean possible = true;
+    	int i;
 
     	if(x <= 0 || x > size_grid){
     		throw new Exception("Valeur hors champ");
@@ -151,52 +153,82 @@ class Board implements IBoard{
     			if(y-size_s < 0){
     				throw new Exception("Sortie de grille");
     			}else{
-    				for(int i = y-1; i > y-size_s-1; i--){
-    					if(!hasShip(x-1, i)){
-    						navires[x-1][i] = new ShipState(ship);
-    					}else{
-    						throw new Exception("Bateau présent à cette position !");
+    				i = y-1; 
+    				while(i > y-size_s-1 && possible){
+    					if(hasShip(x-1, i)){
+    						possible = false;
     					}
-    					
+    					i--;
+    				}
+    				if(possible){
+    					for(int j = y-1; j > y-size_s-1; j--){
+    						navires[x-1][j] = new ShipState(ship);
+    					}	
+    				}else{
+    					throw new Exception("Bateau présent à cette position !");
     				}
     			}
     			break;
+
     		case EAST:
     			if(y+size_s > size_grid){
     				throw new Exception("Sortie de grille");
     			}else{
-    				for(int i = y-1; i < y+size_s-1; i++){
-    					if(!hasShip(x-1, i)){
-    						navires[x-1][i] = new ShipState(ship);
-    					}else{
-    						throw new Exception("Bateau présent à cette position !");
+    				i = y-1; 
+    				while(i < y+size_s-1 && possible){
+    					if(hasShip(x-1, i)){
+    						possible = false;
     					}
+    					i++;
+    				}
+    				if(possible){
+    					for(int j = y-1; j < y+size_s-1; j++){
+    						navires[x-1][j] = new ShipState(ship);
+    					}	
+    				}else{
+    					throw new Exception("Bateau présent à cette position !");
     				}
     			}
     			break;
+
     		case SOUTH:
     			if(x+size_s > size_grid){
     				throw new Exception("Sortie de grille");
     			}else{
-    				for(int i = x-1; i < x+size_s-1; i++){
-    					if(!hasShip(i, y-1)){
-    						navires[i][y-1] = new ShipState(ship);
-    					}else{
-    						throw new Exception("Bateau présent à cette position !");
+    				i = x-1; 
+    				while(i < x+size_s-1 && possible){
+    					if(hasShip(i, y-1)){
+    						possible = false;
     					}
+    					i++;
+    				}
+    				if(possible){
+    					for(int j = x-1; j < x+size_s-1; j++){
+    						navires[x-1][j] = new ShipState(ship);
+    					}	
+    				}else{
+    					throw new Exception("Bateau présent à cette position !");
     				}
     			}
     			break;
+
     		case NORTH:
     			if(x-size_s < 0){
     				throw new Exception("Sortie de grille");
     			}else{
-    				for(int i = x-1; i > x-size_s-1; i--){
-    					if(!hasShip(i, y-1)){
-    						navires[i][y-1] = new ShipState(ship);
-    					}else{
-    						throw new Exception("Bateau présent à cette position !");
+    				i = x-1; 
+    				while(i > x-size_s-1 && possible){
+    					if(hasShip(i, y-1)){
+    						possible = false;
     					}
+    					i--;
+    				}
+    				if(possible){
+    					for(int j = x-1; j > x-size_s-1; j--){
+    						navires[x-1][j] = new ShipState(ship);
+    					}	
+    				}else{
+    					throw new Exception("Bateau présent à cette position !");
     				}
     			}
     			break;
@@ -235,13 +267,13 @@ class Board implements IBoard{
 	}
 
     /**
-     * Get the state of a hit at the given position
+     * Get the state of a hit at the given position considering the 0-25 count
      * @param x
      * @param y
      * @return true if the hit is successful
      */
     public Boolean getHit(int x, int y){
-    	return frappes[x-1][y-1];
+    	return frappes[x][y];
     }
 
 }
