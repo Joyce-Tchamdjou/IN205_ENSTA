@@ -31,18 +31,27 @@ public class Game {
             System.out.println("entre ton nom:");
             // TODO use a scanner to read player name
             sin = new Scanner(System.in);
-            String userName = sin.nextLine();
+            String userName1 = sin.nextLine();
+
+            //Joueur 2
+            System.out.println("entrer le nom du joueur2:");
+            sin = new Scanner(System.in);
+            String userName2 = sin.nextLine();
 
             // TODO init boards
             Board b1, b2;
-            b1 = new Board(userName);
+            b1 = new Board(userName1);
             b2 = new Board("IA");
+            //Joueur 2
+            //b2 = new Board(userName2);
 
             List<AbstractShip> ships = createDefaultShips();
 
             // TODO init this.player1 & this.player2
             this.player1 = new Player(b1, b2, ships);
             this.player2 = new AIPlayer(b2, b1, ships);
+            //Joueur 2
+            //this.player2 = new Player(b2, b1, ships);
 
 
             b1.print();
